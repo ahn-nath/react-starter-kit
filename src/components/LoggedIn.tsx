@@ -63,6 +63,10 @@ export default function LoggedIn() {
             <a className="link" href="https://kinde.com/docs">
               help center
             </a>
+
+            <br/>
+            <PortalLink>Account</PortalLink>;
+
           </p>
 
           <small className="text-subtle">
