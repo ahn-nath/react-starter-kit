@@ -11,7 +11,19 @@ export default function LoggedOut() {
           <h1 className="text-display-3">KindeAuth</h1>
           <div>
             <LoginLink className="btn btn-ghost sign-in-btn">Sign in</LoginLink>
-            <RegisterLink className="btn btn-dark">Sign up</RegisterLink>
+            <RegisterLink
+                className="btn btn-dark"
+                properties={{
+                  utm_source: "my source", // works
+                  click_id: "1234", // works
+                  campaign_id: "marketing id for a QA test", // works
+                  hsa_cam: "this is a test HSA",  // works
+                  pricing_table_key: "app_b_pricing" // to show one specific pricing table
+
+                }}
+            >Register</RegisterLink>
+          
+            
           </div>
         </nav>
       </header>
