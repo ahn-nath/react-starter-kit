@@ -75,12 +75,6 @@ export const AutoLogout = () => {
       return;
     }
 
-    if (!isAuthenticated) {
-      hasLoggedOutRef.current = false;
-      clearPendingLogout();
-      return;
-    }
-
     const triggerLogout = (
       reason: string,
       { persistReason = true }: { persistReason?: boolean } = {},
@@ -104,10 +98,18 @@ export const AutoLogout = () => {
 
     const pendingLogout = readPendingLogout();
     if (pendingLogout) {
+      clearPendingLogout();
       triggerLogout(
         `pending logout detected (${pendingLogout.reason ?? 'unknown'})`,
         { persistReason: false },
       );
+      return;
+    }
+
+    if (!isAuthenticated) {
+      hasLoggedOutRef.current = false;
+      clearPendingLogout();
+      return;
     }
 
     const handleVisibilityChange = () => {
@@ -117,13 +119,11 @@ export const AutoLogout = () => {
     };
 
     const handlePageHide = () => {
-      writePendingLogout('pagehide event');
-      triggerLogout('pagehide event', { persistReason: false });
+      triggerLogout('pagehide event');
     };
 
     const handleBeforeUnload = () => {
-      writePendingLogout('beforeunload event');
-      triggerLogout('beforeunload event', { persistReason: false });
+      triggerLogout('beforeunload event');
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);

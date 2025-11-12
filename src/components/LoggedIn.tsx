@@ -1,17 +1,11 @@
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import { LogoutLink, PortalLink } from "@kinde-oss/kinde-auth-react/components";
-import {AutoLogout} from "./AutoLogout"
-
 
 export default function LoggedIn() {
   const { user } = useKindeAuth();
 
   return (
     <>
-     {/* AutoLogout works globally while authenticated */}
-    <AutoLogout />
-
-
       <header>
         <nav className="nav container">
           <h1 className="text-display-3">KindeAuth</h1>
