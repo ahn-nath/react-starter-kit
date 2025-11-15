@@ -1,4 +1,5 @@
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+import { AutoLogout } from "./components/AutoLogout";
 import LoggedIn from "./components/LoggedIn";
 import LoggedOut from "./components/LoggedOut";
 
@@ -7,5 +8,10 @@ export default function App() {
 
   if (isLoading) return <>Loading...</>;
 
-  return isAuthenticated ? <LoggedIn /> : <LoggedOut />;
+  return (
+    <>
+      <AutoLogout />
+      {isAuthenticated ? <LoggedIn /> : <LoggedOut />}
+    </>
+  );
 }
